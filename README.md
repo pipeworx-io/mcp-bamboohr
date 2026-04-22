@@ -2,21 +2,21 @@
 
 BambooHR MCP Pack — wraps the BambooHR API v1
 
-Part of the [Pipeworx](https://pipeworx.io) open MCP gateway.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 250+ live data sources.
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| `bamboohr_list_employees` | List employees from BambooHR. Returns a directory of all employees. |
-| `bamboohr_get_employee` | Get details for a specific employee by ID. Specify which fields to retrieve. |
-| `bamboohr_get_directory` | Get the employee directory from BambooHR with basic info for all employees. |
-| `bamboohr_list_timeoff` | List time-off requests within a date range. |
-| `bamboohr_get_employee_files` | Get a list of files associated with an employee. |
+| `bamboohr_list_employees` | List all employees with directory info. Returns IDs, names, departments, job titles, and contact details. |
+| `bamboohr_get_employee` | Get detailed employee info by ID (e.g., "12345"). Specify fields like firstName, lastName, email, department. Returns requested data. |
+| `bamboohr_get_directory` | Get complete employee directory with names, titles, departments, contact info, and manager assignments for all staff. |
+| `bamboohr_list_timeoff` | Search time-off requests by date range (e.g., "2024-01-01" to "2024-12-31"). Returns approved/pending requests with employee names and absence types. |
+| `bamboohr_get_employee_files` | Get files in an employee\'s profile by ID. Returns file names, upload dates, and file types. |
 
 ## Quick Start
 
-Add to your MCP client config:
+Add to your MCP client (Claude Desktop, Cursor, Windsurf, etc.):
 
 ```json
 {
@@ -28,11 +28,32 @@ Add to your MCP client config:
 }
 ```
 
-Or use the CLI:
+Or connect to the full Pipeworx gateway for access to all 250+ data sources:
 
-```bash
-npx pipeworx use bamboohr
+```json
+{
+  "mcpServers": {
+    "pipeworx": {
+      "url": "https://gateway.pipeworx.io/mcp"
+    }
+  }
+}
 ```
+
+## Using with ask_pipeworx
+
+Instead of calling tools directly, you can ask questions in plain English:
+
+```
+ask_pipeworx({ question: "your question about Bamboohr data" })
+```
+
+The gateway picks the right tool and fills the arguments automatically.
+
+## More
+
+- [All tools and guides](https://github.com/pipeworx-io/examples)
+- [pipeworx.io](https://pipeworx.io)
 
 ## License
 
